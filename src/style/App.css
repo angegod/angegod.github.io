@@ -1,0 +1,83 @@
+.mainmenu{
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+}
+ul{
+    list-style: none;
+}
+li{
+    margin-left:10px;
+    margin-right: 10px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+h1{
+    text-align: center;
+}
+.buttons button{
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right:10px;
+}
+
+.buttons{
+    justify-self: center;
+    margin-left: 37%;
+}
+td{
+    padding-left:15px;
+    padding-right:15px;
+}
+
+td{
+    color:white;
+}
+
+tbody tr:nth-child(2n-1){
+    background-color: brown;
+}
+tbody tr:nth-child(2n){
+    background-color: rgb(231, 165, 165);
+}
+
+thead tr{
+    background-color: rgb(63, 16, 16);
+}
+
+.details{
+    background-color: white;
+}
+
+.result,.buttons{
+    padding-top:10px;
+}
+
+.productImg img{
+    width:150px;
+    height:200px;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    
+    margin-left:10px;
+}
+.productDetails{
+    margin-top: 20px;
+    width:33%;
+    margin-bottom: 20px;
+}
+.cart table{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.deleteCart{
+    margin-left:49%;
+}
