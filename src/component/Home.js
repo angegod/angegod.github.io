@@ -91,8 +91,9 @@ const Home=()=>{
                         <div className='productPrice'>
                             <label>{records[pages*6-(6-count)].price}元</label>
                         </div>
-                        <div>
+                        <div className='DetailsBtn'>
                             <Button variant='warning' onClick={()=>addItemToCart(pages*6-(6-count))}>添加</Button>
+                            <Button variant='warning'>詳情</Button>
                         </div>
                     </div>
                 </>
@@ -137,12 +138,10 @@ const Home=()=>{
                         <ProductDetails count={0}/>
                         <ProductDetails count={1}/>
                         <ProductDetails count={2}/>
-                    </div>
-                    <div className='row'>
                         <ProductDetails count={3}/>
                         <ProductDetails count={4}/>
                         <ProductDetails count={5}/>
-                </div>
+                    </div>
                 </div>
                 
             </>

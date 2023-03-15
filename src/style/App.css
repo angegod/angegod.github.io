@@ -11,6 +11,13 @@ li{
     margin-left:10px;
     margin-right: 10px;
 }
+li.labelOnly{
+    position:absolute; 
+    right: 0;
+    font-size: medium;
+    padding-top: 5px;
+}
+
 a{
     text-decoration: none;
     color: black;
@@ -80,4 +87,15 @@ thead tr{
 }
 .deleteCart{
     margin-left:49%;
+}
+.DetailsBtn button{
+    margin:10px;
+}
+
+@media(max-width:480px){
+    .productDetails{
+        margin-top: 20px;
+        width:50%;
+        margin-bottom: 20px;
+    }
 }
