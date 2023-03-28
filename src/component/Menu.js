@@ -39,6 +39,7 @@ function Menu(){
             <ul className='mainmenu'>
                 <li className='menuOptions' style={{display:(!checkLogin ? 'none': 'block')}}><a href='Home'>主頁</a></li>
                 <li className='menuOptions' style={{display:(!checkLogin ? 'none': 'block')}}><a href='Cart'>購物車</a></li>
+                <li className='menuOptions' style={{display:(!checkLogin ? 'none': 'block')}}><a href='Cart'>購物紀錄</a></li>
                 <li className='menuOptions' style={{display:(checkLogin ? 'none': 'block')}}><a href='Login'>登入</a></li>
                 <li className='menuOptions' style={{display:(!checkLogin ? 'none': 'block')}}><a href='Logout'>登出</a></li>
                 <li className='labelOnly'><label>{isLogin}</label></li>

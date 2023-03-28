@@ -53,8 +53,11 @@ tbody tr:nth-child(2n){
     background-color: rgb(231, 165, 165);
 }
 
+
+
 thead tr{
     background-color: rgb(63, 16, 16);
+    width: 70%;
 }
 
 .details{
@@ -91,6 +94,40 @@ thead tr{
 .DetailsBtn button{
     margin:10px;
 }
+.hint{
+    text-align: center;
+    color:red;
+}
+.price{
+    background-color: burlywood;
+    color:red;
+    font-size: 20px;
+    margin-left: 49%;
+    border-radius: 5px;
+}
+
+.changeBtn{
+    margin-left: 10px;
+    margin-right:10px;
+}
+/*更改數量之功能的CSS設計*/
+.editLabel{
+    display: none;
+    width:50px;
+}
+.editLabel.display{
+    display: block;
+}
+.countLabel{
+    display: block;
+    width: 50px;
+    height:25px;
+}
+.countLabel.hidden{
+    display: none;
+}
+
+
 
 @media(max-width:480px){
     .productDetails{

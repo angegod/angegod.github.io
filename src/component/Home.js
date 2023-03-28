@@ -108,7 +108,7 @@ const Home=()=>{
     function addItemToCart(id){
        
         var check=false;
-        var json={itemId:(id+1),itemName:records[id].name,itemCount:1,itemPrice:records[id].price};
+        var json={itemId:(id+1),itemName:records[id].name,itemCount:1,itemPrice:records[id].price,itemTotal:records[id].price};
         //console.log(json);
         var carts=ReactSession.get("cart");
         console.log(carts);
@@ -117,6 +117,7 @@ const Home=()=>{
             if(item.itemId===(id+1)&&!check){
                 check=true;
                 item.itemCount++;
+                item.itemTotal+=item.itemPrice;
             }
                 
         });
