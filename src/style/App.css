@@ -88,8 +88,9 @@ thead tr{
     margin-right: auto;
     text-align: center;
 }
-.deleteCart{
+.deleteCart,.sendCart{
     margin-left:49%;
+    margin-top:5px;
 }
 .DetailsBtn button{
     margin:10px;

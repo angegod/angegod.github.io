@@ -4,13 +4,12 @@ import '../style/App.css';
 import { ReactSession }  from 'react-client-session';
 import { Button } from 'react-bootstrap';
 //import cartEmpty from '../images/cartEmpty.png';
+import axios from 'axios';
 
 const Cart=()=>{
     
     const [cart,setCarts]=useState([]);
     
-    
-
     useEffect(()=>{
         setCarts(ReactSession.get("cart"));
 
@@ -45,16 +44,6 @@ const Cart=()=>{
         var labelId="itemLabel"+rowIndex;
         var row=document.getElementById(rowId);
         var label=document.getElementById(labelId);
-
-        /*
-        var othersLabel=document.querySelectorAll('.hidden');
-        var othersRow=document.querySelectorAll('.display');
-        var othersChangeBtn=document.querySelector('.changeBtn');
-
-        othersLabel.forEach(element=>element.classList.remove('hidden'));
-        othersRow.forEach(element=>element.classList.remove('.display'));
-        //othersChangeBtn.forEach(element=>element.innerHTML='變更');
-        */
 
         /* 將原有數量標籤先隱藏 如果二次點擊則恢復*/
         /* 接下來將input顯示出來*/
@@ -96,7 +85,6 @@ const Cart=()=>{
                 console.log(oldcart);
                 setCarts(oldcart);
                 ReactSession.set("cart",cart);
-                /*目前該商品總價格無法同步更改 */
                 
                 /*將輸入格取消*/
                 targetinput.classList.remove("display");
@@ -105,11 +93,35 @@ const Cart=()=>{
         }
     }
 
+    function SendCart(){
+        /*傳遞訂購紀錄的欄位:使用者名稱(之後會改成ID)，訂購資訊，訂購日期 */
+        var user=ReactSession.get("User");
+        var bookItems=JSON.stringify(cart);
+        
+        
+        var json={customer:user,bookItems:bookItems};
+        console.log(json);
+        
+        axios.post(`https://localhost:44345/api/SaveRecord/`,JSON.stringify(json))
+            .then(res=>{
+                console.log(res.data);
+                if(res.data==="OK"){
+                    alert("購物紀錄已儲存");
+                    setCarts([]);
+                    ReactSession.set("cart",[]);
+                }
+                else
+                    alert("Something error happend");
+            }).catch(err=>{
+                console.log(err);
+            })  
+    }
+
     function CartList(){
         console.log(cart);
         
         const CartItemShow=cart.map((item,i)=>
-        <>
+        
             <tr key={i} >
                 <td>{i+1}</td>
                 <td>{item.itemName}</td>
@@ -120,7 +132,7 @@ const Cart=()=>{
                 <td><Button id={'changeBtn'+i} className='changeBtn' variant='danger' onClick={()=>editCount(i)} >變更</Button></td>
             </tr>
            
-        </>
+
             
         )
        
@@ -144,7 +156,8 @@ const Cart=()=>{
                 </table>
                 <hr/>
                 <TotalLabel/>
-
+                <Button variant='warning' onClick={deleteCart} className='btn deleteCart'>清空購物車</Button><br/>
+                <Button variant='warning' onClick={SendCart} className='btn sendCart'>送出購物車</Button>
             </>)
         }else{
             return(<>
@@ -165,7 +178,7 @@ const Cart=()=>{
         <>
             <div className='cart'>
                 <CartList/><br/>
-                <Button variant='warning' onClick={deleteCart} className='btn deleteCart'>清空購物車</Button>
+                
             </div>
             
         

@@ -13,7 +13,8 @@ namespace ReactTestApi.Controllers
 {
     public class ProductController : ApiController
     {
-        [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "GET")]
+        [HttpPost]
+        [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "POST")]
         public string Get()
         {
             string resultstring = "";

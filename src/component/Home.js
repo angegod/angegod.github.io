@@ -26,7 +26,7 @@ const Home=()=>{
 
     useEffect(()=>{
         if(!check){
-            axios.get(`https://localhost:44345/api/Product/`)
+            axios.post(`https://localhost:44345/api/Product/`)
             .then(res=>{
                 if(res.data!==""){//如果有找到資料
                     setCheck(true);

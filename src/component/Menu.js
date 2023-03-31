@@ -7,6 +7,7 @@ import Cart from './Cart';
 import Login from './Login';
 import { ReactSession }  from 'react-client-session';
 import Logout from './Logout';
+import CartRecord from './CartRecord';
 
 
 function Menu(){
@@ -39,7 +40,7 @@ function Menu(){
             <ul className='mainmenu'>
                 <li className='menuOptions' style={{display:(!checkLogin ? 'none': 'block')}}><a href='Home'>主頁</a></li>
                 <li className='menuOptions' style={{display:(!checkLogin ? 'none': 'block')}}><a href='Cart'>購物車</a></li>
-                <li className='menuOptions' style={{display:(!checkLogin ? 'none': 'block')}}><a href='Cart'>購物紀錄</a></li>
+                <li className='menuOptions' style={{display:(!checkLogin ? 'none': 'block')}}><a href='CartRecord'>購物紀錄</a></li>
                 <li className='menuOptions' style={{display:(checkLogin ? 'none': 'block')}}><a href='Login'>登入</a></li>
                 <li className='menuOptions' style={{display:(!checkLogin ? 'none': 'block')}}><a href='Logout'>登出</a></li>
                 <li className='labelOnly'><label>{isLogin}</label></li>
@@ -48,6 +49,7 @@ function Menu(){
             <Routes>
                 <Route path='Home'  element={<Home />}/>
                 <Route path='Cart'  element={<Cart />}/>
+                <Route path='CartRecord'  element={<CartRecord />}/>
                 <Route path='Login' element={<Login />}/>
                 <Route path='Logout' element={<Logout />}/>
             </Routes>
