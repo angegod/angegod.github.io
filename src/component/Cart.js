@@ -139,7 +139,7 @@ const Cart=()=>{
 
         if(cart.length!==0){
             return(<>
-                <table style={{width:'70%'}}>
+                <table style={{width:'70%'}} className='cartTable'>
                     <thead>
                         <tr>
                             <td>編號</td>

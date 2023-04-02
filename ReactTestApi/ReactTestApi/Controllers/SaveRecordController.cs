@@ -39,5 +39,51 @@ namespace ReactTestApi.Controllers
             return "OK";
         }
 
+
+        [HttpPost]
+        [Route("api/SaveRecord/Send")]
+        [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "POST")]
+        public string Send()
+        {
+            /*分辨調閱出來的使用者ID為何*/
+            string sendstring = Request.Content.ReadAsStringAsync().Result.ToString();
+
+            /*連線字串*/
+            string conn = "Server=TR\\SQLEXPRESS;Database=Product;uid=ange;pwd=ange0909;Trusted_Connection=True;MultipleActiveResultSets=True";
+
+            SqlConnection mycon = new SqlConnection(conn);
+
+            string select = "select * from Record where customer=@customer";
+
+            SqlCommand cmd = new SqlCommand(select, mycon);
+
+            cmd.Parameters.Add("@customer", System.Data.SqlDbType.VarChar).Value = sendstring;
+            mycon.Open();
+            SqlDataReader mydr = cmd.ExecuteReader();
+
+            List<SendBookRecord> list1 = new List<SendBookRecord>();
+
+            while (mydr.HasRows)
+            {
+                while (mydr.Read())
+                {
+                    
+                    string customer = mydr.GetString(1);
+                    string bookItemsList = mydr.GetString(2);
+                    string date = mydr.GetString(3);
+                    DateTime Now = DateTime.Now;
+
+                    /*計算該紀錄距離現在差了幾天 如果小於三十天則存入list*/
+                    if ((Now-DateTime.Parse(date)).Days<=30)
+                        list1.Add(new SendBookRecord(customer, bookItemsList,DateTime.Parse(date).ToShortDateString()));
+
+                }
+                mydr.NextResult();
+            }
+
+            string resultstring = JsonConvert.SerializeObject(list1);
+
+            return resultstring;
+        }
     }
 }
