@@ -56,11 +56,11 @@ function Menu(){
         <>
             <AddUnderlined/>
             <ul className='mainmenu'>
-                <li className={`menuOptions ${isUnderlined[0]? 'active' :'' }`} style={{display:(!checkLogin ? 'none': 'block')}} ><a href='/mainpage/Home'>主頁</a></li>
-                <li className={`menuOptions ${isUnderlined[1]? 'active' :'' }`} style={{display:(!checkLogin ? 'none': 'block')}} ><a href='/mainpage/Cart'>購物車</a></li>
-                <li className={`menuOptions ${isUnderlined[2]? 'active' :'' }`} style={{display:(!checkLogin ? 'none': 'block')}} ><a href='/mainpage/CartRecord'>購物紀錄</a></li>
-                <li className='menuOptions' style={{display:(checkLogin ? 'none': 'block')}}  ><a href='/mainpage/Login'>登入</a></li>
-                <li className='menuOptions' style={{display:(!checkLogin ? 'none': 'block')}} ><a href='/mainpage/Logout'>登出</a></li>
+                <li className={`menuOptions ${isUnderlined[0]? 'active' :'' }`} style={{display:(!checkLogin ? 'none': 'block')}} ><a href='Home'>主頁</a></li>
+                <li className={`menuOptions ${isUnderlined[1]? 'active' :'' }`} style={{display:(!checkLogin ? 'none': 'block')}} ><a href='Cart'>購物車</a></li>
+                <li className={`menuOptions ${isUnderlined[2]? 'active' :'' }`} style={{display:(!checkLogin ? 'none': 'block')}} ><a href='CartRecord'>購物紀錄</a></li>
+                <li className='menuOptions' style={{display:(checkLogin ? 'none': 'block')}}  ><a href='Login'>登入</a></li>
+                <li className='menuOptions' style={{display:(!checkLogin ? 'none': 'block')}} ><a href='Logout'>登出</a></li>
                 <li className='labelOnly'><label>{isLogin}</label></li>
             </ul>
             
