@@ -65,11 +65,11 @@ function Menu(){
             </ul>
             
             <Routes>
-                <Route path="/Home"  element={<Home />}/>
-                <Route path="/Cart"  element={<Cart />}/>
-                <Route path="/CartRecord"  element={<CartRecord />}/>
-                <Route path="/Login" element={<Login />}/>
-                <Route path="/Logout" element={<Logout />}/>
+                <Route path='/Home'  element={<Home />}/>
+                <Route path='/Cart'  element={<Cart />}/>
+                <Route path='/CartRecord'  element={<CartRecord />}/>
+                <Route path='/Login' element={<Login />}/>
+                <Route path='/Logout' element={<Logout />}/>
             </Routes>
             
         </>
