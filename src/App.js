@@ -6,7 +6,7 @@ import TestComponent from './component/TestComponent';
 function App() {
   return (
     <>
-    <BrowserRouter>
+    <BrowserRouter basename='/mainpage'>
       <Menu/>      
     </BrowserRouter>
       
