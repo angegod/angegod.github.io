@@ -97,9 +97,10 @@ const Cart=()=>{
         /*傳遞訂購紀錄的欄位:使用者名稱(之後會改成ID)，訂購資訊，訂購日期 */
         var user=ReactSession.get("User");
         var bookItems=JSON.stringify(cart);
+        var costTotal=0;
+        cart.forEach(item=>costTotal+=item.itemTotal);
         
-        
-        var json={customer:user,bookItems:bookItems};
+        var json={customer:user,bookItems:bookItems,costTotal:costTotal};
         console.log(json);
         
         axios.post(`https://localhost:44345/api/SaveRecord/`,JSON.stringify(json))

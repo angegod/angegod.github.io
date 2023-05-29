@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/App.css';
-import {Routes,Route} from 'react-router-dom';
+import {Routes,Route,useLocation} from 'react-router-dom';
 import Home from './Home';
 import Cart from './Cart';
 import Login from './Login';
@@ -15,6 +15,7 @@ function Menu(){
     const [checkLogin,setCheckLogin]=useState(false);//檢查登入狀況
     //const [User,setUser]=useState("");
     const [isLogin,setIsLogin]=useState();
+    const [isUnderlined,setUnderlined]=useState([false,false,false,false]);
 
     useEffect(()=>{
         ReactSession.setStoreType("localStorage");//設定Session
@@ -29,23 +30,40 @@ function Menu(){
             setCheckLogin(false);
             //window.location.href='http://localhost:3000/Login';
         }
+
+        
             
     },[setCheckLogin])
    
-    
+    function AddUnderlined(){//偵測當前路徑，第三個索引值為是否渲染過，避免造成效能問題
+        const nowLocation=useLocation();
+        if(!isUnderlined[3]){
+            if(nowLocation.pathname==='/Home'){
+                setUnderlined([true,false,false,true]);
+            }else if(nowLocation.pathname==='/Cart'){
+                setUnderlined([false,true,false,true]);
+            }else if(nowLocation.pathname==='/CartRecord'){
+                setUnderlined([false,false,true,true]);
+            }
+            console.log(isUnderlined);
+        }
+        
+        return <></>
+    }
     
     
     return(
         <>
+            <AddUnderlined/>
             <ul className='mainmenu'>
-                <li className='menuOptions' style={{display:(!checkLogin ? 'none': 'block')}}><a href='Home'>主頁</a></li>
-                <li className='menuOptions' style={{display:(!checkLogin ? 'none': 'block')}}><a href='Cart'>購物車</a></li>
-                <li className='menuOptions' style={{display:(!checkLogin ? 'none': 'block')}}><a href='CartRecord'>購物紀錄</a></li>
-                <li className='menuOptions' style={{display:(checkLogin ? 'none': 'block')}}><a href='Login'>登入</a></li>
-                <li className='menuOptions' style={{display:(!checkLogin ? 'none': 'block')}}><a href='Logout'>登出</a></li>
+                <li className={`menuOptions ${isUnderlined[0]? 'active' :'' }`} style={{display:(!checkLogin ? 'none': 'block')}} ><a href='Home'>主頁</a></li>
+                <li className={`menuOptions ${isUnderlined[1]? 'active' :'' }`} style={{display:(!checkLogin ? 'none': 'block')}} ><a href='Cart'>購物車</a></li>
+                <li className={`menuOptions ${isUnderlined[2]? 'active' :'' }`} style={{display:(!checkLogin ? 'none': 'block')}} ><a href='CartRecord'>購物紀錄</a></li>
+                <li className='menuOptions' style={{display:(checkLogin ? 'none': 'block')}}  ><a href='Login'>登入</a></li>
+                <li className='menuOptions' style={{display:(!checkLogin ? 'none': 'block')}} ><a href='Logout'>登出</a></li>
                 <li className='labelOnly'><label>{isLogin}</label></li>
             </ul>
-            <hr/>
+            
             <Routes>
                 <Route path='Home'  element={<Home />}/>
                 <Route path='Cart'  element={<Cart />}/>

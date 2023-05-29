@@ -3,6 +3,8 @@
     font-weight: bold;
     display: flex;
     flex-direction: row;
+    height: auto;
+    background-color: gray;
 }
 ul{
     list-style: none;
@@ -11,6 +13,7 @@ li{
     margin-left:10px;
     margin-right: 10px;
 }
+
 li.labelOnly{
     position:absolute; 
     right: 0;
@@ -21,6 +24,26 @@ li.labelOnly{
 a{
     text-decoration: none;
     color: black;
+}
+a:hover{
+    color: white;
+   
+}
+.menuOptions{
+    color: black;
+    border-color: white;
+    border-bottom: 5px solid gray;
+}
+
+.menuOptions:hover{
+    border-bottom: 5px solid brown;
+    transition: border-color 0.5s linear;
+    background-color: green;
+    
+}
+
+.menuOptions.active{
+    border-bottom: 5px solid brown;
 }
 
 h1{
@@ -93,7 +116,7 @@ thead tr{
     margin-top:5px;
 }
 .DetailsBtn button{
-    margin:10px;
+    /*margin:10px;*/
 }
 .hint{
     text-align: center;
@@ -136,4 +159,23 @@ thead tr{
         width:50%;
         margin-bottom: 20px;
     }
+}
+
+/*處理添加特效*/
+.add{
+    visibility: hidden;
+    color: green;
+    width: 30%;
+}
+
+.add.active{
+    visibility: visible;
+    animation-name: disappear;
+    animation-duration: 1s;
+}
+
+
+@keyframes disappear{
+    from {opacity: 100%;}
+    to {opacity: 0%;}
 }

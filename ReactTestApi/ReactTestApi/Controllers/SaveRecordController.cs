@@ -26,12 +26,13 @@ namespace ReactTestApi.Controllers
 
             SqlConnection mycon = new SqlConnection(conn);
             /*訂購記錄欄位:買家，訂購資訊，日期*/
-            string sendRecord = "insert into Record (customer,bookItems,bookDate) values (@customer,@bookItems,@bookDate)";
+            string sendRecord = "insert into Record (customer,bookItems,bookDate,bookTotal) values (@customer,@bookItems,@bookDate,@bookTotal)";
 
             SqlCommand cmd = new SqlCommand(sendRecord, mycon);
             cmd.Parameters.Add("@customer", System.Data.SqlDbType.VarChar).Value = record.customer;
             cmd.Parameters.Add("@bookItems", System.Data.SqlDbType.VarChar).Value = record.bookItems;
             cmd.Parameters.Add("@bookDate", System.Data.SqlDbType.Date).Value = DateTime.Now;
+            cmd.Parameters.Add("@bookTotal", System.Data.SqlDbType.Int).Value = record.costTotal;
 
             mycon.Open();
             cmd.ExecuteNonQuery();
@@ -71,11 +72,12 @@ namespace ReactTestApi.Controllers
                     string customer = mydr.GetString(1);
                     string bookItemsList = mydr.GetString(2);
                     string date = mydr.GetString(3);
+                    int total = mydr.GetInt32(4);
                     DateTime Now = DateTime.Now;
 
                     /*計算該紀錄距離現在差了幾天 如果小於三十天則存入list*/
                     if ((Now-DateTime.Parse(date)).Days<=30)
-                        list1.Add(new SendBookRecord(customer, bookItemsList,DateTime.Parse(date).ToShortDateString()));
+                        list1.Add(new SendBookRecord(customer, bookItemsList,DateTime.Parse(date).ToShortDateString(),total));
 
                 }
                 mydr.NextResult();

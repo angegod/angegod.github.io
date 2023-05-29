@@ -12,7 +12,7 @@ function CartRecord(){
         3.目前設定為只顯示近30天的紀錄
     */
     const [RecordList,setRecordList]=useState([]);
-
+    
     useEffect(()=>{
         var User=ReactSession.get("User");
 
@@ -41,8 +41,8 @@ function CartRecord(){
            <div className='sections' key={i}>
                 <div className='descriptions simple'>
                     <div className='bookId'><label>{i+1}</label></div>
-                    <div className='bookDate'><label>{item.date}</label></div>
-                    <div className='bookTotal'><label>500元</label></div>
+                    <div className='bookDate'><label>訂購日期:{item.date}</label></div>
+                    <div className='bookTotal'><label>總金額:{item.total}</label></div>
                     <div className='button'>
                         <Button variant='danger' onClick={()=>ShowDetails(i)}>詳細內容</Button>
                     </div>

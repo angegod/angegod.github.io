@@ -92,7 +92,9 @@ const Home=()=>{
                             <label>{records[pages*6-(6-count)].price}元</label>
                         </div>
                         <div className='DetailsBtn'>
+                            
                             <Button variant='warning' onClick={()=>addItemToCart(pages*6-(6-count))}>添加</Button>
+                            <label id={"add"+count} className='add'>+1</label>
                             <Button variant='warning'>詳情</Button>
                         </div>
                     </div>
@@ -102,7 +104,7 @@ const Home=()=>{
             return(<div className='productDeatils'></div>)
         }
 
-        //https://drive.google.com/uc?export=view&id=1B4tnhkMl5kj7Swg2KrtD17wTc6JwJdEm
+        //https://drive.google.com/uc?export=view&id=1B4tnhkMl5kj7Swg2KrtD17wTc6JwJdEm 
     }
 
     function addItemToCart(id){
@@ -124,7 +126,15 @@ const Home=()=>{
 
         if(!check)
             carts=[...carts,json];
-        ReactSession.set("cart",carts);  
+        ReactSession.set("cart",carts);
+        
+        var addLabel=document.getElementById('add'+id);
+        addLabel.classList.add('active');
+        setInterval(()=>{
+            addLabel.classList.remove('active');
+        },1000);
+        
+            
     }
     
     function FindSearch(){
